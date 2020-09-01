@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { getParametersCollection, isDatabaseReady } from './index';
 import { Db } from 'mongodb';
 import { exportDocuments, safeCallback, safeObjectArgument } from './utils';
