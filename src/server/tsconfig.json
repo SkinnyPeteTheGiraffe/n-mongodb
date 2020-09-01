@@ -12,6 +12,7 @@
     "lib": ["es2017", "dom"],
     "types": ["@citizenfx/server", "@types/node"],
     "moduleResolution": "node",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,

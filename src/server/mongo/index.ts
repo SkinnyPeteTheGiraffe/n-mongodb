@@ -1,33 +1,6 @@
-import { Collection, Db, MongoClient } from 'mongodb';
-import { MONGO_COLLECTION, MONGO_HOST } from '../data/constants';
+import { Collection, Db } from 'mongodb';
 import { generateLogMessage } from '../utils';
 import LogLevel from '../data/logLevel';
-
-/**
- * Attempts to connect to a database with the given parameters. If the connection fails
- * will return false instead of {@link Db} reference.
- *
- * @param host the string containing the host used to connect to the mongo database
- * @param collection the string containing the collection to use within the database
- */
-export const connect: (host: string, collection: string) => Db = (host, collection) => {
-  let database: Db;
-  if (host != 'default' && collection != 'default') {
-    MongoClient.connect(host, { useNewUrlParser: true }, function (err, client) {
-      if (err) return console.log(generateLogMessage(LogLevel.ERROR, err.message));
-      database = client.db(collection);
-
-      console.log(generateLogMessage(LogLevel.INFO, `Connected to database "${collection}".`));
-      emit('onDatabaseConnect', collection);
-    });
-  } else {
-    if (host == 'default')
-      console.log(generateLogMessage(LogLevel.ERROR, ` Convar ${MONGO_HOST} not set (see README)`));
-    if (collection == 'default')
-      console.log(generateLogMessage(LogLevel.ERROR, `Convar ${MONGO_COLLECTION} not set (see README)`));
-  }
-  return database;
-};
 
 /**
  * Checks database connection, returning true if connected otherwise false.
