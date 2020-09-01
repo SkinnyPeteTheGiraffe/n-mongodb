@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/noto-toolkit.iml" filepath="$PROJECT_DIR$/.idea/noto-toolkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/noto-mongodb.iml" filepath="$PROJECT_DIR$/.idea/noto-mongodb.iml" />
     </modules>
   </component>
 </project>
