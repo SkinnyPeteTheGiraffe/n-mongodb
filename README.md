@@ -9,8 +9,8 @@ functions to easily access and manipulate a Mongo database. Adapted from [@alcoh
 ## Installation
 * Clone the library, update NPM, and build:
     ```
-    git clone https://github.com/SkinnyPeteTheGiraffe/n-mongodb.git n-mongodb
-    cd n-mongodb
+    git clone https://github.com/SkinnyPeteTheGiraffe/n-mongodb.git mongodb
+    cd mongodb
     yarn install
     yarn run build
     ```
