@@ -27,7 +27,7 @@ export const safeObjectArgument: (object: any) => any = object => {
   return object;
 };
 
-export const safeCallback: (cb: (any) => any, args: any) => Immediate | false = (cb, ...args) => {
+export const safeCallback = (cb: (...any) => void, ...args: any[]): Immediate | false => {
   if (typeof cb === "function") return setImmediate(() => cb(...args));
   else return false;
 };

@@ -21,7 +21,7 @@ if (host != 'default' && collection != 'default') {
   });
 } else {
   if (host == 'default')
-    console.log(generateLogMessage(LogLevel.ERROR, ` Convar ${MONGO_HOST} not set (see README)`));
+    console.log(generateLogMessage(LogLevel.ERROR, `Convar ${MONGO_HOST} not set (see README)`));
   if (collection == 'default')
     console.log(generateLogMessage(LogLevel.ERROR, `Convar ${MONGO_COLLECTION} not set (see README)`));
 }
@@ -33,7 +33,7 @@ global.exports('connected', () => isDatabaseReady(database));
 
 global.exports('count', count(database));
 
-global.exports('insert', () => insert(database));
+global.exports('insert', insert(database));
 global.exports('insertOne', (params, callback) => {
   if (checkParameters(params)) {
     params.documents = [params.document];
@@ -41,6 +41,7 @@ global.exports('insertOne', (params, callback) => {
   }
   return insert(database)(params, callback);
 });
+
 global.exports('find', find(database));
 global.exports('findOne', (params, callback) => {
   if (checkParameters(params)) params.limit = 1;

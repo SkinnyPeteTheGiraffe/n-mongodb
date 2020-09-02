@@ -28,10 +28,10 @@ export const find = (database: Db) => (params: any, callback: () => void): void 
   cursor.toArray((err, documents) => {
     if (err) {
       console.log(generateLogMessage(LogLevel.ERROR, `exports.find: Error "${err.message}".`));
-      safeCallback(callback, [false, err.message]);
+      safeCallback(callback, false, err.message);
       return;
     }
-    safeCallback(callback, [true, exportDocuments(documents)]);
+    safeCallback(callback, true, exportDocuments(documents));
   });
 };
 
@@ -65,7 +65,7 @@ export const insert = (database: Db) => (params: any, callback: (any) => void): 
   collection.insertMany(documents, options, (err, result) => {
     if (err) {
       console.log(generateLogMessage(LogLevel.ERROR, err.message));
-      safeCallback(callback, [false, err.message]);
+      safeCallback(callback, false, err.message);
       return;
     }
     const arrayOfIds = [];
@@ -75,7 +75,7 @@ export const insert = (database: Db) => (params: any, callback: (any) => void): 
         arrayOfIds[parseInt(key)] = result.insertedIds[key].toString();
       }
     }
-    safeCallback(callback, [true, result.insertedCount, arrayOfIds]);
+    safeCallback(callback, true, result.insertedCount, arrayOfIds);
   });
 };
 
@@ -106,10 +106,10 @@ export const update = (database: Db) => (
   const cb = (err, res) => {
     if (err) {
       console.log(generateLogMessage(LogLevel.ERROR, `exports.update: Error "${err.message}".`));
-      safeCallback(callback, [false, err.message]);
+      safeCallback(callback, false, err.message);
       return;
     }
-    safeCallback(callback, [true, res.result.nModified]);
+    safeCallback(callback, true, res.result.nModified);
   };
   isUpdateOne
     ? collection.updateOne(query, update, options, cb)
@@ -136,10 +136,10 @@ export const count = (database: Db) => (params: any, callback: (any) => void) =>
   collection.countDocuments(query, options, (err, count) => {
     if (err) {
       console.log(generateLogMessage(LogLevel.ERROR, `exports.count: Error "${err.message}".`));
-      safeCallback(callback, [false, err.message]);
+      safeCallback(callback, false, err.message);
       return;
     }
-    safeCallback(callback, [true, count]);
+    safeCallback(callback, true, count);
   });
 };
 
@@ -165,10 +165,10 @@ export const destroy = (database: Db) => (params: any, callback: (any) => void, 
   const cb = (err, res) => {
     if (err) {
       console.log(LogLevel.ERROR, `exports.delete: Error "${err.message}".`);
-      safeCallback(callback, [false, err.message]);
+      safeCallback(callback, false, err.message);
       return;
     }
-    safeCallback(callback, [true, res.result.n]);
+    safeCallback(callback, true, res.result.n);
   };
   isDeleteOne
     ? collection.deleteOne(query, options, cb)
