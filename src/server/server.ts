@@ -31,9 +31,9 @@ if (host != 'default' && collection != 'default') {
 //
 global.exports('connected', () => isDatabaseReady(database));
 
-global.exports('count', count(database));
+global.exports('count', (params, callback) => count(database)(params, callback));
 
-global.exports('insert', insert(database));
+global.exports('insert', (params, callback) => insert(database)(params, callback));
 global.exports('insertOne', (params, callback) => {
   if (checkParameters(params)) {
     params.documents = [params.document];
@@ -42,18 +42,18 @@ global.exports('insertOne', (params, callback) => {
   return insert(database)(params, callback);
 });
 
-global.exports('find', find(database));
+global.exports('find', (params, callback) => find(database)(params, callback));
 global.exports('findOne', (params, callback) => {
   if (checkParameters(params)) params.limit = 1;
   return find(database)(params, callback);
 });
 
-global.exports('update', update(database));
+global.exports('update', (params, callback) => update(database)(params, callback, false));
 global.exports('updateOne', (params, callback) => {
   return update(database)(params, callback, true);
 });
 
-global.exports('delete', destroy(database));
+global.exports('delete', (params, callback) => destroy(database)(params, callback, false));
 global.exports('deleteOne', (params, callback) => {
   return destroy(database)(params, callback, true);
 });
